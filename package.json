@@ -1,5 +1,7 @@
 {
     "name": "airscript-syntax-highlighter",
+    "publisher": "marinthiercelin",
+    "repository": "https://github.com/marinthiercelin/airscript-syntax-highlighter",
     "displayName": "AirScript Syntax Highlighter",
     "description": "Syntax highlighting for AirScript",
     "version": "0.0.1",
