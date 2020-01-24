@@ -3,62 +3,71 @@
 	"name": "AirScript",
 	"patterns": [
 		{
-			"include": "#keywords"
+			"include": "#keyword"
 		},
 		{
-			"include": "#types"
+			"include": "#type"
 		},
 		{
-			"include": "#registers"
+			"include": "#register"
 		},
 		{
-			"include": "#scopes"
+			"include": "#scope"
 		},
 		{
-			"include": "#fields"
+			"include": "#field"
 		},
 		{
-			"include": "#comments"
+			"include": "#comment"
 		},
 		{
-			"include": "#numbers"
+			"include": "#number"
 		},
 		{
 			"include": "#operator"
+		},
+		{
+			"include": "#object"
 		}
 	],
 	"repository": {
-		"keywords": {
+		"keyword": {
 			"patterns": [{
-				"name": "keyword.airscript",
-				"match": "\\b(define|over|cycle|transition|register|registers|for (each|steps?|all steps?)|init|enforce|constraints?|yield|when|else|input)\\b"
+				"name": "keyword.flow.airscript",
+				"match": "\\b(define|over|cycle|for (each|all)?|init|enforce|yield|when|else)\\b"
 			}]
 		},
-		"registers": {
+		"object": {
 			"patterns": [{
-				"name": "variable.other.register.airscript",
-				"match": "\\b(\\$r[0-9]*|\\$n[0-9]*)\\b"
+				"name": "keyword.other.airscript",
+				"match": "\\b(transition|registers?|steps?|constraints?|input)\\b"
 			}]
 		},
-		"scopes": {
+		"register": {
+			"patterns": [{
+				"name": "variable.language.airscript",
+				"match": "\\b(\\$r|\\$n)\\b"
+			}]
+		},
+		"scope": {
 			"patterns": [{
 				"name": "storage.modifier.airscript",
 				"match": "\\b(const|static|public|secret)\\b"
 			}]
 		},
-		"fields": {
+		"field": {
 			"patterns": [{
-				"name": "field.airscript",
+				"name": "support.type.airscript",
 				"match": "\\bprime field\\b"
 			}]
 		},
-		"types": {
+		"type": {
 			"patterns": [{
-				"name": "storage.type.airscript",
+				"name": "support.class.type.airscript",
 				"match": "\\b(boolean|element)\\b"
 			}]
 		},
-		"comments": {
+		"comment": {
             "patterns": [
                 {
                     "include": "#comment-line"
@@ -67,9 +76,9 @@
         },
         "comment-line": {
             "match": "(?<!tp:)//.*?$",
-            "name": "comment.line.solidity"
+            "name": "comment.line.airscript"
 		},
-		"numbers": {
+		"number": {
             "patterns": [
                 {
                     "include": "#number-decimal"
@@ -78,7 +87,7 @@
         },
         "number-decimal": {
             "match": "\\b(\\d+(\\.\\d+)?)\\b",
-            "name": "constant.numeric.decimal.solidity"
+            "name": "constant.numeric.decimal.airscript"
 		},
 		"operator": {
             "patterns": [
@@ -92,11 +101,11 @@
         },
         "operator-arithmetic": {
             "match": "(\\^|\\+|\\-|\\/|\\*)",
-            "name": "keyword.operator.arithmetic.solidity"
+            "name": "keyword.operator.arithmetic.airscript"
         },
         "operator-assignment": {
             "match": "(<\\-)",
-            "name": "keyword.operator.assignment.solidity"
+            "name": "keyword.operator.assignment.airscript"
         }
 	},
 	"scopeName": "source.airscript"
