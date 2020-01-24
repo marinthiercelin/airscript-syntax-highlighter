@@ -1,0 +1,25 @@
+{
+    "name": "airscript-syntax-highlighter",
+    "displayName": "AirScript Syntax Highlighter",
+    "description": "Syntax highlighting for AirScript",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.41.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "airscript",
+            "aliases": ["AirScript", "airscript"],
+            "extensions": [".air"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "airscript",
+            "scopeName": "source.airscript",
+            "path": "./syntaxes/airscript.tmLanguage.json"
+        }]
+    }
+}

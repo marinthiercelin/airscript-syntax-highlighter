@@ -1,0 +1,103 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "AirScript",
+	"patterns": [
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#types"
+		},
+		{
+			"include": "#registers"
+		},
+		{
+			"include": "#scopes"
+		},
+		{
+			"include": "#fields"
+		},
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#numbers"
+		},
+		{
+			"include": "#operator"
+		}
+	],
+	"repository": {
+		"keywords": {
+			"patterns": [{
+				"name": "keyword.airscript",
+				"match": "\\b(define|over|cycle|transition|register|registers|for (each|steps?|all steps?)|init|enforce|constraints?|yield|when|else|input)\\b"
+			}]
+		},
+		"registers": {
+			"patterns": [{
+				"name": "variable.other.register.airscript",
+				"match": "\\b(\\$r[0-9]*|\\$n[0-9]*)\\b"
+			}]
+		},
+		"scopes": {
+			"patterns": [{
+				"name": "storage.modifier.airscript",
+				"match": "\\b(const|static|public|secret)\\b"
+			}]
+		},
+		"fields": {
+			"patterns": [{
+				"name": "field.airscript",
+				"match": "\\bprime field\\b"
+			}]
+		},
+		"types": {
+			"patterns": [{
+				"name": "storage.type.airscript",
+				"match": "\\b(boolean|element)\\b"
+			}]
+		},
+		"comments": {
+            "patterns": [
+                {
+                    "include": "#comment-line"
+                }
+            ]
+        },
+        "comment-line": {
+            "match": "(?<!tp:)//.*?$",
+            "name": "comment.line.solidity"
+		},
+		"numbers": {
+            "patterns": [
+                {
+                    "include": "#number-decimal"
+                }
+            ]
+        },
+        "number-decimal": {
+            "match": "\\b(\\d+(\\.\\d+)?)\\b",
+            "name": "constant.numeric.decimal.solidity"
+		},
+		"operator": {
+            "patterns": [
+                {
+                    "include": "#operator-arithmetic"
+                },
+                {
+                    "include": "#operator-assignment"
+                }
+            ]
+        },
+        "operator-arithmetic": {
+            "match": "(\\^|\\+|\\-|\\/|\\*)",
+            "name": "keyword.operator.arithmetic.solidity"
+        },
+        "operator-assignment": {
+            "match": "(<\\-)",
+            "name": "keyword.operator.assignment.solidity"
+        }
+	},
+	"scopeName": "source.airscript"
+}
