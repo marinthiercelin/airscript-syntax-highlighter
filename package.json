@@ -4,7 +4,7 @@
     "repository": "https://github.com/marinthiercelin/airscript-syntax-highlighter",
     "displayName": "AirScript Syntax Highlighter",
     "description": "Syntax highlighting for AirScript",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "engines": {
         "vscode": "^1.41.0"
     },
@@ -12,12 +12,19 @@
         "Programming Languages"
     ],
     "contributes": {
-        "languages": [{
-            "id": "airscript",
-            "aliases": ["AirScript", "airscript"],
-            "extensions": [".air"],
-            "configuration": "./language-configuration.json"
-        }],
+        "languages": [
+            {
+                "id": "airscript",
+                "aliases": [
+                    "AirScript",
+                    "airscript"
+                ],
+                "extensions": [
+                    ".air"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
         "grammars": [
             {
                 "language": "airscript",
@@ -27,7 +34,10 @@
             {
                 "scopeName": "inline.airscript",
                 "path": "./syntaxes/inline_airscript.json",
-                "injectTo": ["source.js", "source.ts"],
+                "injectTo": [
+                    "source.js",
+                    "source.ts"
+                ],
                 "embeddedLanguages": {
                     "meta.embedded.block.airscript": "airscript"
                 }
