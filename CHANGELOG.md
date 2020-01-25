@@ -4,6 +4,9 @@ All notable changes to the "airscript-syntax-highlighter" extension will be docu
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
-
+## [0.0.1]
 - Initial release
+
+## [0.0.2]
+### Added
+- inline syntax highlighting for templates in `.js` and `.ts` files.
