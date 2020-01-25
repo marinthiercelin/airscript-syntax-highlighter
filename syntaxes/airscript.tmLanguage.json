@@ -100,7 +100,7 @@
             ]
         },
         "operator-arithmetic": {
-            "match": "(\\^|\\+|\\-|\\/|\\*)",
+            "match": "(#|\\^|\\+|\\-|\\/|\\*)",
             "name": "keyword.operator.arithmetic.airscript"
         },
         "operator-assignment": {
