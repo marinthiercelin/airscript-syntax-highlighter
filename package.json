@@ -18,10 +18,20 @@
             "extensions": [".air"],
             "configuration": "./language-configuration.json"
         }],
-        "grammars": [{
-            "language": "airscript",
-            "scopeName": "source.airscript",
-            "path": "./syntaxes/airscript.tmLanguage.json"
-        }]
+        "grammars": [
+            {
+                "language": "airscript",
+                "scopeName": "source.airscript",
+                "path": "./syntaxes/airscript.tmLanguage.json"
+            },
+            {
+                "scopeName": "inline.airscript",
+                "path": "./syntaxes/inline_airscript.json",
+                "injectTo": ["source.js", "source.ts"],
+                "embeddedLanguages": {
+                    "meta.embedded.block.airscript": "airscript"
+                }
+            }
+        ]
     }
 }
