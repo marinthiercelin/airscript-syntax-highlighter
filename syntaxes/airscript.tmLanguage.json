@@ -3,6 +3,9 @@
 	"name": "AirScript",
 	"patterns": [
 		{
+			"include":"#definition"
+		},
+		{
 			"include": "#keyword"
 		},
 		{
@@ -12,7 +15,7 @@
 			"include": "#register"
 		},
 		{
-			"include": "#scope"
+			"include": "#modifier"
 		},
 		{
 			"include": "#field"
@@ -27,29 +30,107 @@
 			"include": "#operator"
 		},
 		{
-			"include": "#object"
+			"include": "#function-call"
+		},
+		{
+			"include": "#identifier"
 		}
 	],
 	"repository": {
 		"keyword": {
 			"patterns": [{
-				"name": "keyword.flow.airscript",
-				"match": "\\b(define|over|cycle|for (each|all)?|init|enforce|yield|when|else)\\b"
+				"name": "keyword.control.flow.airscript",
+				"match": "\\b(for (each|all)?|init|when|else|yield|cycle|enforce)\\b"
+			},{
+				"name": "support.type.airscript",
+				"match": "\\b(steps?|input)\\b"
 			}]
 		},
-		"object": {
-			"patterns": [{
-				"name": "keyword.other.airscript",
-				"match": "\\b(transition|registers?|steps?|constraints?|input)\\b"
-			}]
+		"definition":{
+			"patterns": [
+				{
+					"include":"#transition-definition"	
+				},
+				{
+					"include":"#constraint-definition"	
+				},
+				{
+					"include": "#stark-definition"
+				}
+			]
+		},
+		"transition-definition":{
+			"patterns": [
+				{
+					"match":"\\b(transition)\\s([1-9]|\\d\\d\\d*)\\s(registers?)\\b",
+					"captures": {
+						"1":{
+							"name":"keyword.other.airscript"
+						},
+						"2":{
+							"name":"constant.numeric.airscript"
+						},
+						"3":{
+							"name":"support.type.airscript"
+						}
+					}
+				}
+			]
+		},
+		"constraint-definition":{
+			"patterns": [
+				{
+					"match":"\\b(enforce)\\s([1-9]|\\d\\d\\d*)\\s(constraints?)\\b",
+					"captures": {
+						"1":{
+							"name":"keyword.other.airscript"
+						},
+						"2":{
+							"name":"constant.numeric.airscript"
+						},
+						"3":{
+							"name":"support.type.airscript"
+						}
+					}
+				}
+			]
+		},
+		"stark-definition":{
+			"patterns": [
+				{
+					"match":"\\b(define)\\s([_$[:alpha:]][_$[:alnum:]]*)\\s(over)\\s(prime\\sfield)\\b",
+					"captures": {
+						"1":{
+							"name":"keyword.other.airscript"
+						},
+						"2":{
+							"name":"variable.other.airscript"
+						},
+						"3":{
+							"name": "keyword.other.airscript"
+						},
+						"4":{
+							"name":"support.type.airscript"
+						}
+					}
+				}
+			]
+		},
+		"function-call":{
+			"patterns": [
+				{
+					"name":"entity.name.function",
+					"match": "\\b([_$[:alpha:]][_$[:alnum:]]*)\\("
+				}
+			]
 		},
 		"register": {
 			"patterns": [{
-				"name": "variable.language.airscript",
-				"match": "\\b(\\$r|\\$n)\\b"
+				"name": "constant.language.registers.airscript",
+				"match": "(\\$r[0-9]*|\\$n[0-9]*)"
 			}]
 		},
-		"scope": {
+		"modifier": {
 			"patterns": [{
 				"name": "storage.modifier.airscript",
 				"match": "\\b(const|static|public|secret)\\b"
@@ -63,7 +144,7 @@
 		},
 		"type": {
 			"patterns": [{
-				"name": "support.class.type.airscript",
+				"name": "storage.type.airscript",
 				"match": "\\b(boolean|element)\\b"
 			}]
 		},
@@ -104,9 +185,17 @@
             "name": "keyword.operator.arithmetic.airscript"
         },
         "operator-assignment": {
-            "match": "(<\\-)",
+            "match": "(<\\-|:)",
             "name": "keyword.operator.assignment.airscript"
-        }
+		},
+		"identifier":{
+			"patterns":[
+				{
+					"name": "variable.other.airscript",
+					"match": "(?x)([_$[:alpha:]][_$[:alnum:]]*)"
+				}
+			]
+		}
 	},
 	"scopeName": "source.airscript"
 }
