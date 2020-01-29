@@ -39,11 +39,24 @@
 	"repository": {
 		"keyword": {
 			"patterns": [{
-				"name": "keyword.control.flow.airscript",
-				"match": "\\b(for (each|all)?|init|when|else|yield|cycle|enforce)\\b"
+				"match":"\\b(for)\\s(all)\\s(steps)\\b",
+				"captures": {
+					"1":{
+						"name":"keyword.other.airscript"
+					},
+					"2":{
+						"name":"constant.numeric.quantifier.airscript"
+					},
+					"3":{
+						"name":"keyword.other.airscript"
+					}
+				}
 			},{
-				"name": "support.type.airscript",
-				"match": "\\b(steps?|input)\\b"
+				"name": "keyword.other.airscript",
+				"match": "\\b(for(\\seach)?|init|when|else|input|steps?|cycle)\\b"
+			},{
+				"name": "keyword.control.flow.airscript",
+				"match": "\\b(yield|enforce|import)\\b"
 			}]
 		},
 		"definition":{
@@ -65,13 +78,13 @@
 					"match":"\\b(transition)\\s([1-9]|\\d\\d\\d*)\\s(registers?)\\b",
 					"captures": {
 						"1":{
-							"name":"keyword.other.airscript"
+							"name":"keyword.control.flow.airscript"
 						},
 						"2":{
 							"name":"constant.numeric.airscript"
 						},
 						"3":{
-							"name":"support.type.airscript"
+							"name":"keyword.other.airscript"
 						}
 					}
 				}
@@ -83,13 +96,13 @@
 					"match":"\\b(enforce)\\s([1-9]|\\d\\d\\d*)\\s(constraints?)\\b",
 					"captures": {
 						"1":{
-							"name":"keyword.other.airscript"
+							"name":"keyword.control.flow.airscript"
 						},
 						"2":{
 							"name":"constant.numeric.airscript"
 						},
 						"3":{
-							"name":"support.type.airscript"
+							"name":"keyword.other.airscript"
 						}
 					}
 				}
@@ -101,7 +114,7 @@
 					"match":"\\b(define)\\s([_$[:alpha:]][_$[:alnum:]]*)\\s(over)\\s(prime\\sfield)\\b",
 					"captures": {
 						"1":{
-							"name":"keyword.other.airscript"
+							"name":"keyword.control.flow.airscript"
 						},
 						"2":{
 							"name":"variable.other.airscript"
@@ -126,7 +139,7 @@
 		},
 		"register": {
 			"patterns": [{
-				"name": "constant.language.registers.airscript",
+				"name": "support.type.airscript",
 				"match": "(\\$r[0-9]*|\\$n[0-9]*)"
 			}]
 		},
@@ -163,12 +176,18 @@
             "patterns": [
                 {
                     "include": "#number-decimal"
-                }
+                },{
+					"include": "#number-hexadecimal"
+				}
             ]
         },
         "number-decimal": {
             "match": "\\b(\\d+(\\.\\d+)?)\\b",
             "name": "constant.numeric.decimal.airscript"
+		},
+		"number-hexadecimal": {
+            "match": "\\b(0x\\d+(\\.\\d+)?)\\b",
+            "name": "constant.numeric.hexadecimal.airscript"
 		},
 		"operator": {
             "patterns": [
