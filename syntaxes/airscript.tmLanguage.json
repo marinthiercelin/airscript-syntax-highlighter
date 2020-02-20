@@ -34,6 +34,9 @@
 		},
 		{
 			"include": "#identifier"
+		},
+		{
+			"include": "#string"
 		}
 	],
 	"repository": {
@@ -53,10 +56,10 @@
 				}
 			},{
 				"name": "keyword.other.airscript",
-				"match": "\\b(for(\\seach)?|init|when|else|input|steps?|cycle)\\b"
+				"match": "\\b(for(\\seach)?|init|when|else|input|steps?|cycle|with)\\b"
 			},{
 				"name": "keyword.control.flow.airscript",
-				"match": "\\b(yield|enforce|import)\\b"
+				"match": "\\b(yield|enforce|import|from|as)\\b"
 			}]
 		},
 		"definition":{
@@ -214,6 +217,66 @@
 					"match": "(?x)([_$[:alpha:]][_$[:alnum:]]*)"
 				}
 			]
+		},
+		"string": {
+			"patterns": [
+				{
+					"include": "#qstring-single"
+				},
+				{
+					"include": "#qstring-double"
+				}
+			]
+		},
+		"qstring-double": {
+			"name": "string.quoted.double.js",
+			"begin": "\"",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.js"
+				}
+			},
+			"end": "(\")|((?:[^\\\\\\n])$)",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.string.end.js"
+				},
+				"2": {
+					"name": "invalid.illegal.newline.js"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#string-character-escape"
+				}
+			]
+		},
+		"qstring-single": {
+			"name": "string.quoted.single.js",
+			"begin": "'",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.string.begin.js"
+				}
+			},
+			"end": "(\\')|((?:[^\\\\\\n])$)",
+			"endCaptures": {
+				"1": {
+					"name": "punctuation.definition.string.end.js"
+				},
+				"2": {
+					"name": "invalid.illegal.newline.js"
+				}
+			},
+			"patterns": [
+				{
+					"include": "#string-character-escape"
+				}
+			]
+		},
+		"string-character-escape": {
+			"name": "constant.character.escape.js",
+			"match": "\\\\(x[0-9A-Fa-f]{2}|u[0-9A-Fa-f]{4}|u\\{[0-9A-Fa-f]+\\}|[0-2][0-7]{0,2}|3[0-6][0-7]?|37[0-7]?|[4-7][0-7]?|.|$)"
 		}
 	},
 	"scopeName": "source.airscript"
