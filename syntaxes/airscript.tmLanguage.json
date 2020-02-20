@@ -168,12 +168,30 @@
             "patterns": [
                 {
                     "include": "#comment-line"
-                }
+				},
+				{
+					"include": "#comment-multiline"
+				}
             ]
         },
         "comment-line": {
             "match": "(?<!tp:)//.*?$",
             "name": "comment.line.airscript"
+		},
+		"comment-multiline":{
+			"name": "comment.block.airscript",
+			"begin": "/\\*",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.definition.comment.airscript"
+				}
+			},
+			"end": "\\*/",
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.definition.comment.airscript"
+				}
+			}
 		},
 		"number": {
             "patterns": [
